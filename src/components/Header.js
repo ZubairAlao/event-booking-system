@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
     faBars,
-    faCircle,
  } from "@fortawesome/free-solid-svg-icons";
  import { Box, HStack, Button, Text } from "@chakra-ui/react";
  import {
@@ -12,7 +11,10 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
+import { Link} from 'react-router-dom';
+
+
 
 
 const Header = () => {
@@ -23,15 +25,15 @@ const Header = () => {
 
     const MenuItem = ({ children, ...props }) => (
     <Text
-        as="a"
-        href={props.href}
+        as={Link}
+        to={props.to}
         onClick={props.onClick}
         padding="10px"
         margin="5px 0"
         textDecoration="none"
         position="relative"
         _hover={{
-            textDecoration: "none", // Remove the default underline on hover
+            textDecoration: "none", 
             _before: {
                 content: '""',
                 position: "absolute",
@@ -39,9 +41,9 @@ const Header = () => {
                 height: "2px",
                 bottom: "0",
                 left: "0",
-                backgroundColor: "#f39c12", // Customize the underline color
+                backgroundColor: "#00a896", 
             },
-            // background: "gray.200", // Customize the background color on hover
+            
         }}
     >
         {children}
@@ -60,8 +62,12 @@ const Header = () => {
             }
             if (prevScrollPos > currentScrollPos) {
                 headerElement.style.transform = "translateY(0)";
+                // Add bottom padding when the header is visible
+                document.body.style.paddingTop = `${headerElement.clientHeight}px`; // Reset padding
             } else {
                 headerElement.style.transform = "translateY(-200px)";
+                // remove bottom padding when the header is not visible
+                document.body.style.paddingTop = "0";
             }
             prevScrollPos = currentScrollPos;
         }
@@ -72,16 +78,16 @@ const Header = () => {
         }
     }, []);
 
-    const handleClick = (anchor) => {
-        const id = `${anchor}-section`;
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        }
-    };
+    // const handleClick = (anchor) => {
+    //     const id = `${anchor}-section`;
+    //     const element = document.getElementById(id);
+    //     if (element) {
+    //         element.scrollIntoView({
+    //             behavior: "smooth",
+    //             block: "start",
+    //         });
+    //     }
+    // };
 
 
     return (
@@ -95,30 +101,43 @@ const Header = () => {
             transitionProperty="transform"
             transitionDuration=".3s"
             transitionTimingFunction="ease-in-out"
-            backgroundColor="#0d1432"
+            backgroundColor="#0d1b25"
+            boxShadow="2px 2px 4px rgba(0, 0, 0, 0.2)"
             ref={headerRef}
         >
             <Box color="white" maxWidth="1280px" margin="0 auto">
                 <HStack
-                    px={16}
+                    px={12}
                     py={4}
                     justifyContent="space-between"
                     alignItems="center"
                 > 
                     <Box fontSize="2xl">
-                        <a href="/" onClick={() => handleClick("/")}>
-                        <span style={{ fontSize: "1.5em", fontWeight: "bold"}}>Z</span>
-                            <span style={{ color: "#f39c12", fontSize: ".7em", marginLeft: "0.2em" }}>
-                                <FontAwesomeIcon icon={faCircle} />
+                        <Link to="/" >
+                        <span style={{ fontSize: "1.5em", fontWeight: "bold"}}>Event</span>
+                            <span style={{ color: "#00a896", fontSize: ".7em", marginLeft: "0.2em" }}>
+                                Naija
                             </span>                       
-                        </a>
+                        </Link>
                     </Box>
                     <nav>
                         <HStack spacing={8} display={{ base: "none", md: "flex" }}>
-                                <MenuItem href="#about" onClick={handleClick("about")}>About</MenuItem>
-                                <MenuItem href="#experience" onClick={handleClick("experience")}>Experience</MenuItem>
-                                <MenuItem href="#projects" onClick={handleClick("projects")}>Projects</MenuItem>
-                                <MenuItem href="#contactme" onClick={handleClick("contactme")}>Contact Me</MenuItem>
+                                <MenuItem to="/" >Home</MenuItem>
+                                <MenuItem to="/about">About</MenuItem>
+                                <MenuItem to="/gallery">Gallery</MenuItem>
+                                <MenuItem to="/book-event">Book Event</MenuItem>
+                                <MenuItem to="/contact-us">Contact Us</MenuItem>
+                                <Button 
+                                    as="a"
+                                    href="login"
+                                    backgroundColor="#6b5b95" color= "#fff" display="flex" alignItems="center"
+                                    _hover={{backgroundColor: "#00a896", color: "#fff"}}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                    }}
+                                >
+                                        Login
+                                </Button>
                         </HStack>
                         <Button ref={btnRef} backgroundColor="#FFF" _hover={{backgroundColor: "#f39c12"}} onClick={onOpen} display={{ base: "block", md: "none" }}>
                             <FontAwesomeIcon icon={faBars}  />
@@ -135,15 +154,27 @@ const Header = () => {
                                 <DrawerCloseButton />
                                 <DrawerBody display="flex" flexDirection="column" mt={100}>
                                     {/* Mobile Menu items */}
-                                    <MenuItem href="#about" onClick={() => { handleClick("about"); onClose(); }}>About</MenuItem>
-                                    <MenuItem href="#experience" onClick={() => { handleClick("experience"); onClose(); }}>Experience</MenuItem>
-                                    <MenuItem href="#projects" onClick={() => { handleClick("projects"); onClose(); }}>Projects</MenuItem>
-                                    <MenuItem href="#contactme" onClick={() => { handleClick("contactme"); onClose(); }}>Contact Me</MenuItem>
+                                    <MenuItem href="/" onClick={() => {onClose(); }}>Home</MenuItem>
+                                    <MenuItem href="#about" onClick={() => {  onClose(); }}>About</MenuItem>
+                                    <MenuItem href="#gallery" onClick={() => {  onClose(); }}>Gallery</MenuItem>
+                                    <MenuItem href="#popularevent" onClick={() => {  onClose(); }}>Book Event</MenuItem>
+                                    <MenuItem href="#contactme" onClick={() => { onClose(); }}>Contact Me</MenuItem>
+                                    <Button 
+                                        as="a"
+                                        href="/login"
+                                        backgroundColor="#6b5b95" color= "#fff" display="flex" alignItems="center"
+                                        _hover={{backgroundColor: "#00a896", color: "#fff"}}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                        }}
+                                    >
+                                            Login
+                                    </Button>
                                 </DrawerBody>
                                 </DrawerContent>
                             </Drawer>
-
                     </nav>
+
                 </HStack>
             </Box>
         </Box>

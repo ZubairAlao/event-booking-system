@@ -12,6 +12,8 @@ import {
     VStack,
     Input, 
     Text,
+    Checkbox,
+    Link,
 } from "@chakra-ui/react"
 import * as Yup from 'yup'
 import FullScreenSection from "./FullScreenSection";
@@ -23,10 +25,7 @@ import { faGithub, faLinkedin, faTwitter, faWhatsapp } from "@fortawesome/free-b
 
 
 
-const contactMessage = `Feel free to get in touch with me using the contact form. 
-I would love to hear from you and discuss any web development projects or opportunities you may have. 
-I am dedicated to delivering high-quality solutions that meet your unique needs and exceed your expectations. 
-Let's collaborate and create something amazing together!`
+const contactMessage = `Have any questions or suggestions? We would be happy to hear from you.`
 const socials = [
     {
         icon: faEnvelope,
@@ -53,7 +52,7 @@ const socials = [
         url: "tel:08130030894", 
     },
 ];
-const ContactMeSection = () => {
+const ContactUsSection = () => {
         /** 
             * Covers a complete form implementation using formik and yup for validation 
         */
@@ -62,28 +61,32 @@ const ContactMeSection = () => {
         initialValues: {
             firstName: "",
             email: "",
-            message: "", 
+            message: "",
+            agreeToTerms: false, 
         },
         validationSchema: Yup.object({
-            firstName: Yup.string().required("Required"),
+            name: Yup.string().required("Required"),
             email: Yup.string().email("Invalid email address").required("Required"),
             message: Yup.string()
-            .min(10, "Must be atleast 15 characters")
+            .min(15, "Must be atleast 15 characters")
             .required("Required"),
+            agreeToTerms: Yup.boolean()
+            .oneOf([true], "You must agree to the terms")
+            .required("You must agree to the terms"),
         }),
     });
 
     return (
         <FullScreenSection
             isDarkBackground
-            backgroundColor="#141b3d"
+            backgroundColor="#0d1b2a"
             justifyContent="center"
             alignItems="center"
             spacing={8}
             px={{base: "8", md: "24"}}
             py={16}
         >
-            <VStack spacing={8}>
+            <VStack spacing={8} maxW="1024px" alignItems="center">
                 <Heading as="h1" id="contactme"
                     position="relative"
                     _before={{
@@ -96,43 +99,30 @@ const ContactMeSection = () => {
                         backgroundColor: "#9b59b6",
                     }}
                 > 
-                    Contact Me 
+                    Contact Us 
                 </Heading> 
 
-                <Stack flexDirection={{base: "column", lg: "row"}} spacing={8}> 
-                    <VStack flex="1" spacing={8}>
-                        <Text>
-                            {contactMessage}
-                        </Text>
-                        <HStack spacing={4} justifyContent="center">
-                            {socials.map(({icon, url}) => (
-                                <a  
-                                    key={url}
-                                    href={url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <FontAwesomeIcon
-                                        icon={icon} size="2x" key={url} 
-                                        style={{ transition: 'color 0.3s ease-in-out' }}
-                                        onMouseEnter={(e) => (e.target.style.color = '#9b59b6')}
-                                        onMouseLeave={(e) => (e.target.style.color = '#fff')}
-                                        />
-                                </a>
-                            ))}
-                        </HStack>
-                    </VStack>
-                    <VStack maxW="800px" flex="1" spacing={4}>
-                        <Box  rounded="md" w="100%">
+                <VStack spacing={8}> 
+                    
+                    <VStack spacing={8}>
+                        <Box rounded="md" w="100%"  bg="rgba(127, 127, 127, 0.4)" boxShadow="lg" p={8}> 
                             <form  name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                            <p style={{ display: 'none' }}>
-                                <label>
-                                    Don’t fill this out if you’re human: <input name="bot-field" />
-                                </label>
-                            </p>
-                            <input type="hidden" name="form-name" value="contact" /> 
+                                <p style={{ display: 'none' }}>
+                                    <label>
+                                        Don’t fill this out if you’re human: <input name="bot-field" />
+                                    </label>
+                                </p>
+                                <input type="hidden" name="form-name" value="contact" /> 
 
                                 <VStack spacing={4}>
+                                    <VStack spacing={2} alignItems="flex-start">
+                                    <Text fontSize="xl" fontWeight="bold">
+                                        Message Us
+                                    </Text>
+                                    <Text>
+                                        {contactMessage}
+                                    </Text>
+                                </VStack>
                                     <FormControl isInvalid={!!formik.errors.name  && formik.touched.name}>
                                         <FormLabel htmlFor="name">Name</FormLabel> 
                                         <Input 
@@ -168,6 +158,26 @@ const ContactMeSection = () => {
                                         /> 
                                         <FormErrorMessage>{formik.errors.message}</FormErrorMessage> 
                                     </FormControl> 
+                                    <FormControl  isInvalid={!!formik.errors.agreeToTerms && formik.touched.agreeToTerms}> 
+                                        <FormLabel htmlFor="agreeToTerms" display="flex" alignItems="center">
+                                            <Checkbox
+                                                id="agreeToTerms"
+                                                name="agreeToTerms"
+                                                isChecked={formik.values.agreeToTerms}
+                                                onChange={() => formik.setFieldValue("agreeToTerms", !formik.values.agreeToTerms)}
+                                                colorScheme='green' mr={5}
+                                            />
+                                                I agree to EventNaija
+                                                <Link color="blue.500" href="/terms-of-use" target="_blank" rel="noopener noreferrer">
+                                                Terms of Use
+                                                </Link>
+                                                and
+                                                <Link color="blue.500" href="/privacy-policy" target="_blank" rel="noopener noreferrer">
+                                                Privacy Policy
+                                                </Link>
+                                        </FormLabel>                                        
+                                        <FormErrorMessage>{formik.errors.agreeToTerms}</FormErrorMessage> 
+                                    </FormControl> 
 
                                     <Button type="submit" colorScheme="purple" width="full"> 
                                         Submit 
@@ -175,11 +185,42 @@ const ContactMeSection = () => {
                                 </VStack>
                             </form>
                         </Box>
+
+                        <VStack alignItems="flex-start" w="100%" spacing={8}>
+                            <Text fontSize="xl">
+                                Follow Us
+                            </Text>
+                            <HStack spacing={4}>
+                                {socials.map(({icon, url}) => (
+                                    <a  
+                                        key={url}
+                                        href={url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={icon} size="2x" key={url} 
+                                            />
+                                    </a>
+                                ))}
+                            </HStack>
+                            <VStack spacing={4} alignItems="start">
+                                <Text fontSize="xl">
+                                    Contact details
+                                </Text>
+                                <VStack spacing={2} alignItems="start"> 
+                                    <Text fontSize="xl">Email: eventnaija@gmail.com</Text>
+                                    <Text fontSize="xl">Phone: (+234) 8020020894</Text>
+                                    <Text fontSize="xl">Office: Osogbo, Nigeria</Text>
+                                </VStack>
+                            </VStack>
+                        </VStack>
+
                     </VStack>
-                </Stack>
+                </VStack>
             </VStack>
         </FullScreenSection>
     )
 }
 
-export default ContactMeSection;
+export default ContactUsSection;
