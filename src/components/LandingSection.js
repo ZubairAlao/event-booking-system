@@ -1,5 +1,7 @@
 import React from "react";
-import { Heading, Text, VStack, Stack, Button, Box, FormLabel, FormControl, Input } from "@chakra-ui/react";
+import { Heading, Text, VStack, Stack, Button, Box, FormLabel, FormControl, Input, Card,
+    CardBody,
+    CardFooter,} from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -78,32 +80,31 @@ const LandingSection = () => {
                 </VStack>
 
                 <VStack flex="2">
-          <Box>
-            <VStack spacing={4} align="start">
-                <Text as="p" fontSize="md">
-                    Pick your Event
-                </Text>
-                <Text as="p" fontSize="md">
-                    No event Picked
-                </Text>
+                    <Card maxW="md" borderWidth="1px" borderRadius="lg" boxShadow="md">
+                        <CardBody>
+                        <VStack spacing={4} align="start">
+                            <Text as="p" fontSize="xl">
+                                Pick your Event
+                            </Text>
+                            <AspectRatio ratio={16 / 9}>
+                                <iframe
+                                    title="Map of Nigeria"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15548123.144646325!2d3.513447251791694!3d9.082634869101681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd141ab8f67df%3A0xe35b8c0f4f2b9b95!2sNigeria!5e0!3m2!1sen!2sng!4v1631199139743!5m2!1sen!2sng"
+                                />
+                            </AspectRatio>
+                            <FormControl spacing={4}>
+                                <FormLabel htmlFor="guessnumber">Estimated Number of Guests</FormLabel>
+                                <Input id="guessnumber" type="number" min={1} max={10} />
+                            </FormControl>
 
-                <AspectRatio ratio={16 / 9}>
-                    <iframe
-                    title="Map of Nigeria"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15548123.144646325!2d3.513447251791694!3d9.082634869101681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd141ab8f67df%3A0xe35b8c0f4f2b9b95!2sNigeria!5e0!3m2!1sen!2sng!4v1631199139743!5m2!1sen!2sng"
-                    />
-                </AspectRatio>
-                <FormControl spacing={2}>
-                    <FormLabel>Estimated Number of Guests</FormLabel>
-                    <Input type="number" min={1} max={10} />
-                    <Button type="submit" colorScheme="teal" width="full">
-                    Find Event
-                    </Button>
-                </FormControl>
-            </VStack>
-          </Box>
-        </VStack>
-
+                            <Button type="submit" colorScheme="teal" width="full">
+                                Find Event
+                            </Button>
+                        </VStack>
+                        </CardBody>
+                        <CardFooter> No event Picked</CardFooter>
+                    </Card>
+                    </VStack>
             </Stack>
         </FullScreenSection>
     );
