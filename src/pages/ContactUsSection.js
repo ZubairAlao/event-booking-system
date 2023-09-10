@@ -7,7 +7,6 @@ import {
     FormLabel,
     Heading,
     HStack,
-    Stack,
     Textarea,
     VStack,
     Input, 
@@ -171,7 +170,7 @@ const ContactUsSection = () => {
                                                 <Link color="blue.500" to="/terms-of-use" target="_blank" rel="noopener noreferrer">
                                                 Terms of Use
                                                 </Link>
-                                                and
+                                                {" "}and{" "}
                                                 <Link color="blue.500" to="/privacy-policy" target="_blank" rel="noopener noreferrer">
                                                 Privacy Policy
                                                 </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import FullScreenSection from "../components/FullScreenSection";
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Heading, Text, VStack } from "@chakra-ui/react";
 
 
   
