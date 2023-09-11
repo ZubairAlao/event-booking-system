@@ -61,8 +61,8 @@ const Footer = () => {
             EventNaija
           </Heading>
           <Stack
-            flexDir="row"
-            spacing={48} // Adjusted spacing between sections
+            direction={{ base: "column", md: "row" }}
+            spacing={{ base: "16", md: "48" }}// Adjusted spacing between sections
             py={4} // Adjusted padding for better spacing
           >
             <VStack>

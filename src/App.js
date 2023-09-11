@@ -11,6 +11,7 @@ import BookEvent from './pages/BookEvent';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUSe from './pages/TermsOfUse';
 import ContactUsSection from './pages/ContactUsSection';
+import ScrollToTop from "./components/ScrollToTop"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -20,6 +21,7 @@ function App() {
     <main>
       <ChakraProvider>
         <Router> 
+          <ScrollToTop /> 
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />

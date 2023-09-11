@@ -80,7 +80,7 @@ const Faqs = () => {
                 Frequently Asked Questions
             </Heading>
 
-            <Accordion allowToggle w="1280px">
+            <Accordion allowToggle minW="100%">
                 {eventFAQs.map((faq, index) => (
                     <AccordionItem key={index}>
                     <h2>
