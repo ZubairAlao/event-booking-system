@@ -82,6 +82,7 @@ const ContactUsSection = () => {
             justifyContent="center"
             alignItems="center"
             spacing={8}
+            p={8}
             py={16}
         >
             <VStack spacing={8} maxW="1024px" alignItems="center">
