@@ -61,9 +61,8 @@ const BookEventSection = () => {
             justifyContent="center"
             alignItems="center"
             backgroundColor="#c7d55e0"
-            spacing={4}
-            px={{base: "8", md: "24"}}
-            py={16}
+            spacing={8}
+            p={8}
             
         >
             <Heading as="h1" id="book-event" color="#000"
@@ -92,7 +91,7 @@ const BookEventSection = () => {
 
             <Box
                 display="grid"
-                gridTemplateColumns={{base: "1fr", md: "repeat(3,minmax(0,1fr))"}}
+                gridTemplateColumns={{base: "1fr", lg: "repeat(3,minmax(0,1fr))"}}
                 gridGap={8}
                 mt={8}
             >

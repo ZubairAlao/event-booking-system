@@ -62,7 +62,7 @@ const Footer = () => {
           </Heading>
           <Stack
             direction={{ base: "column", md: "row" }}
-            spacing={{ base: "16", md: "48" }}// Adjusted spacing between sections
+            spacing={{ base: "8", md: "24" }}// Adjusted spacing between sections
             py={4} // Adjusted padding for better spacing
           >
             <VStack>

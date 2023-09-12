@@ -2,6 +2,7 @@ import React from "react";
 import FullScreenSection from "./FullScreenSection";
 import { Box, Button, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import Card from "./Card";
+import { Link} from 'react-router-dom';
 
 const events = [
     {
@@ -61,10 +62,8 @@ const PopularEventSection = () => {
             justifyContent="center"
             alignItems="center"
             backgroundColor="#c7d55e0"
-            spacing={4}
-            px={{base: "8", md: "24"}}
-            py={16}
-            
+            spacing={8}
+            p={8}
         >
             <Heading as="h1" id="popular-event" color="#000"
                 position="relative"
@@ -106,7 +105,17 @@ const PopularEventSection = () => {
                 ))}
             </Box>
             <Center>
-                <Button colorScheme="teal">Find More Event</Button>
+                {/* <Button colorScheme="teal">Find More Event</Button> */}
+                <Link to="/book-event">
+                    <Button
+                    colorScheme="teal"
+                    size="md"
+                    borderRadius="lg"
+                    _hover={{ bgColor: "teal.600" }}
+                    >
+                    Find More Event
+                    </Button>
+                </Link>
             </Center>
         </FullScreenSection>
     )

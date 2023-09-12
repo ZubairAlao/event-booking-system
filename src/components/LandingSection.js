@@ -29,8 +29,8 @@ const LandingSection = () => {
             bgGradient="linear(to-r, #0d1b2a, transparent)"
             minWidth="100%"
             position="relative"
-            px={{base: "8", md: "24"}}
             py={16}
+            p={8}
         >
             <Box
                 position="absolute"
@@ -46,6 +46,7 @@ const LandingSection = () => {
                 backgroundRepeat="no-repeat"
             ></Box>
             <Stack 
+                maxW="1024px" 
                 spacing={{base: "8", md: "8"}} 
                 justifyContent={{base: "center", md: "space-between" }} 
                 alignItems="center" 
@@ -58,7 +59,7 @@ const LandingSection = () => {
                                 {text1}
                         </Heading>
                         
-                        <Text as="p" size="md" textAlign={{base: "justify", md: "left"}}>
+                        <Text as="p" size="md" textAlign={{base: "justify", md: "left"}} textShadow="md">
                             {text2}
                         </Text>
                     </VStack>
@@ -79,7 +80,7 @@ const LandingSection = () => {
                     </VStack>
                 </VStack>
 
-                <VStack flex="2">
+                <VStack flex="2" align="end">
                     <Card maxW="md" borderWidth="1px" borderRadius="lg" boxShadow="md">
                         <CardBody>
                         <VStack spacing={4} align="start">

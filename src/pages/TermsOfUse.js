@@ -11,9 +11,7 @@ const TermsOfUse = () => {
             alignItems="center"
             backgroundColor="#c7d55e0"
             spacing={8}
-            px={{base: "8", md: "24"}}
-            py={16}
-            
+            p={8}
         >
             <Heading as="h1" id="#faq" color="#000"
                 position="relative"

@@ -1,6 +1,6 @@
 import React from "react";
 import FullScreenSection from "./FullScreenSection";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Flex, } from "@chakra-ui/react";
 import {
     Accordion,
     AccordionItem,
@@ -59,11 +59,9 @@ const Faqs = () => {
         <FullScreenSection
             justifyContent="center"
             alignItems="center"
-            backgroundColor="#c7d55e0"
+            backgroundColor="#F5F5F5"
             spacing={8}
-            px={{base: "8", md: "24"}}
-            py={16}
-            
+            p={8}
         >
             <Heading as="h1" id="#faq" color="#000"
                 position="relative"
@@ -80,21 +78,23 @@ const Faqs = () => {
                 Frequently Asked Questions
             </Heading>
 
-            <Accordion allowToggle minW="100%">
+            <Flex justify="center"> {/* Center the accordion */}
+              <Accordion allowMultiple width="100%" maxWidth="1200px"> {/* Set a max width */}
                 {eventFAQs.map((faq, index) => (
-                    <AccordionItem key={index}>
+                  <AccordionItem key={index}>
                     <h2>
-                        <AccordionButton>
-                        <Box as="span" flex="1" textAlign="left" fontSize="xl">
-                            {faq.question}
+                      <AccordionButton>
+                        <Box as="span" flex="1" textAlign="left" fontSize="xl" pr={{lg: "60"}}>
+                          {faq.question}
                         </Box>
                         <AccordionIcon />
-                        </AccordionButton>
+                      </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>{faq.answer}</AccordionPanel>
-            </AccordionItem>
-      ))}
-    </Accordion>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </Flex>
 
             
         </FullScreenSection>

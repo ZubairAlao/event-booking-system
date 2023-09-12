@@ -45,7 +45,7 @@ const Gallery = () => {
       alignItems="center"
       backgroundColor="#F5F5F5"
       spacing={8}
-      px={{ base: "8", md: "24" }}
+      p={8}
       py={16}
     >
       <Heading
@@ -67,7 +67,7 @@ const Gallery = () => {
 
       <Box
         display="grid" // Change display to grid
-        gridTemplateColumns={{base: "1fr", md: "repeat(4,minmax(0,1fr))"}}
+        gridTemplateColumns={{base: "repeat(2,minmax(0,1fr))", md: "repeat(3,minmax(0,1fr))", lg: "repeat(4,minmax(0,1fr))"}}
         gridGap={8}
       >
         {images.map((image, index) => (

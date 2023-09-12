@@ -57,9 +57,9 @@ const About = () => {
       justifyContent="center"
       alignItems="center"
       backgroundColor="#fff"
-      spacing={16}
-      px={{ base: "8", md: "24" }}
-      py={16}
+      spacing={8}
+      maxW="1024px"
+      p={8}
     >
       <Heading
         position="relative"
@@ -94,7 +94,7 @@ const About = () => {
             </Text>
           </VStack>
 
-          <HStack spacing={8} flexDirection={{ base: "column", md: "row" }}>
+          <HStack spacing={8} flexDirection={{ base: "column", lg: "row" }}>
             <VStack flex="1">
               <Heading as="h3" size="lg" flex="1" textAlign={{ base: "left", md: "right" }}>
                 Our Story
@@ -147,6 +147,8 @@ const About = () => {
                   transform: "scale(1.05)",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
                 }}
+                flexBasis="0" // Add this line
+                flexGrow="1"  // Add this line
               >
                 <FontAwesomeIcon icon={reason.getIcon} color="#6b5b95" size="3x" />
                 <HStack>

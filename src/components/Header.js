@@ -78,18 +78,6 @@ const Header = () => {
         }
     }, []);
 
-    // const handleClick = (anchor) => {
-    //     const id = `${anchor}-section`;
-    //     const element = document.getElementById(id);
-    //     if (element) {
-    //         element.scrollIntoView({
-    //             behavior: "smooth",
-    //             block: "start",
-    //         });
-    //     }
-    // };
-
-
     return (
         <Box 
             position="fixed"
@@ -121,25 +109,22 @@ const Header = () => {
                         </Link>
                     </Box>
                     <nav>
-                        <HStack spacing={8} display={{ base: "none", md: "flex" }}>
+                        <HStack spacing={8} display={{ base: "none", lg: "flex" }}>
                                 <MenuItem to="/" >Home</MenuItem>
                                 <MenuItem to="/about">About</MenuItem>
                                 <MenuItem to="/gallery">Gallery</MenuItem>
                                 <MenuItem to="/book-event">Book Event</MenuItem>
                                 <MenuItem to="/contact-us">Contact Us</MenuItem>
                                 <Button 
-                                    as="a"
-                                    href="login"
+                                    as={Link}
+                                    to="/login"
                                     backgroundColor="#6b5b95" color= "#fff" display="flex" alignItems="center"
                                     _hover={{backgroundColor: "#00a896", color: "#fff"}}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                    }}
                                 >
                                         Login
                                 </Button>
                         </HStack>
-                        <Button ref={btnRef} backgroundColor="#FFF" _hover={{backgroundColor: "#f39c12"}} onClick={onOpen} display={{ base: "block", md: "none" }}>
+                        <Button ref={btnRef} backgroundColor="#FFF" _hover={{backgroundColor: "#00a896"}} onClick={onOpen} display={{ base: "block", lg: "none" }}>
                             <FontAwesomeIcon icon={faBars}  />
                         </Button>
                         <Drawer 
@@ -150,19 +135,19 @@ const Header = () => {
                             }} 
                             finalFocusRef={btnRef} >
                                 <DrawerOverlay />
-                                <DrawerContent backgroundColor="#0d1432" color="#fff">
+                                <DrawerContent backgroundColor="#6b5b95" color="#fff">
                                 <DrawerCloseButton />
                                 <DrawerBody display="flex" flexDirection="column" mt={100}>
                                     {/* Mobile Menu items */}
-                                    <MenuItem href="/" onClick={() => {onClose(); }}>Home</MenuItem>
-                                    <MenuItem href="#about" onClick={() => {  onClose(); }}>About</MenuItem>
-                                    <MenuItem href="#gallery" onClick={() => {  onClose(); }}>Gallery</MenuItem>
-                                    <MenuItem href="#popularevent" onClick={() => {  onClose(); }}>Book Event</MenuItem>
-                                    <MenuItem href="#contactme" onClick={() => { onClose(); }}>Contact Me</MenuItem>
+                                    <MenuItem to="/" onClick={() => {onClose(); }}>Home</MenuItem>
+                                    <MenuItem to="/about" onClick={() => {  onClose(); }}>About</MenuItem>
+                                    <MenuItem to="/gallery" onClick={() => {  onClose(); }}>Gallery</MenuItem>
+                                    <MenuItem to="/book-event" onClick={() => {  onClose(); }}>Book Event</MenuItem>
+                                    <MenuItem to="/contact-us" onClick={() => { onClose(); }}>Contact Me</MenuItem>
                                     <Button 
                                         as="a"
                                         href="/login"
-                                        backgroundColor="#6b5b95" color= "#fff" display="flex" alignItems="center"
+                                        backgroundColor="#00a896" color= "#fff" display="flex" alignItems="center"
                                         _hover={{backgroundColor: "#00a896", color: "#fff"}}
                                         onClick={(e) => {
                                             e.preventDefault();
