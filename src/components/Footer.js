@@ -99,7 +99,7 @@ const Footer = () => {
               {socials.map(({ icon, url }) => (
                 <Link
                   key={url}
-                  href={url}
+                  to={url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

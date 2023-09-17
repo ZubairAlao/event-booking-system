@@ -4,12 +4,12 @@ import {
   Image,
   Badge,
   Text,
-  Link,
   Button,
   Center,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
-const Card = ({ imageSrc, title, partyNum, amount, extras, bookNow }) => {
+const Card = ({ imageSrc, title, guestCount, amount, extras, bookNow }) => {
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={imageSrc} alt={title} />
@@ -27,7 +27,7 @@ const Card = ({ imageSrc, title, partyNum, amount, extras, bookNow }) => {
             textTransform="uppercase"
             ml="2"
           >
-            Party Size of {partyNum} People
+            Party Size of {guestCount} People
           </Box>
         </Box>
 
@@ -46,8 +46,8 @@ const Card = ({ imageSrc, title, partyNum, amount, extras, bookNow }) => {
           Extras: {extras}
         </Text>
 
-        <Center mt="2"> {/* Center the "Book Now" button */}
-          <Link href={bookNow} target="_blank" rel="noopener noreferrer">
+        <Center mt="2"> 
+          <Link to={bookNow}>
             <Button
               colorScheme="teal"
               size="md"

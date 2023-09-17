@@ -12,7 +12,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
-import { Link} from 'react-router-dom';
+import { Link,} from 'react-router-dom';
 
 
 
@@ -144,17 +144,17 @@ const Header = () => {
                                     <MenuItem to="/gallery" onClick={() => {  onClose(); }}>Gallery</MenuItem>
                                     <MenuItem to="/book-event" onClick={() => {  onClose(); }}>Book Event</MenuItem>
                                     <MenuItem to="/contact-us" onClick={() => { onClose(); }}>Contact Me</MenuItem>
-                                    <Button 
-                                        as="a"
-                                        href="/login"
-                                        backgroundColor="#00a896" color= "#fff" display="flex" alignItems="center"
-                                        _hover={{backgroundColor: "#00a896", color: "#fff"}}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                        }}
-                                    >
-                                            Login
-                                    </Button>
+                                    <Link to="/login">
+                                        <Button
+                                            backgroundColor="#6b5b95"
+                                            color="#fff"
+                                            display="flex"
+                                            alignItems="center"
+                                            _hover={{ backgroundColor: "#00a896", color: "#fff" }}
+                                        >
+                                            Login 
+                                        </Button>
+                                    </Link>
                                 </DrawerBody>
                                 </DrawerContent>
                             </Drawer>

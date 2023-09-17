@@ -11,7 +11,10 @@ import BookEvent from './pages/BookEvent';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUSe from './pages/TermsOfUse';
 import ContactUsSection from './pages/ContactUsSection';
-import ScrollToTop from "./components/ScrollToTop"
+import ScrollToTop from "./components/ScrollToTop";
+import { EventProvider } from './components/context/EventContext';
+import EventList from './pages/EventList';
+import BookInfo from './pages/BookInfo';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -20,6 +23,7 @@ function App() {
   return (
     <main>
       <ChakraProvider>
+        <EventProvider>
         <Router> 
           <ScrollToTop /> 
           <Header />
@@ -31,11 +35,14 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/popular-event" element={<PopularEventSection />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/eventlist/:guestCount" element={<EventList />} />
+            <Route path="/book-info/:info" element={<BookInfo />} />
             <Route path="/contact-us" element={<ContactUsSection />} />
             <Route path="/faqs" element={<Faqs />} />
           </Routes>
           <Footer />
         </Router>
+        </EventProvider>
       </ChakraProvider>
     </main>
   );

@@ -1,12 +1,14 @@
 import React from "react";
 import { Heading, Text, VStack, Stack, Button, Box, FormLabel, FormControl, Input, Card,
     CardBody,
-    CardFooter,} from "@chakra-ui/react";
+    CardFooter,
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import FullScreenSection from "./FullScreenSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import wedddingHall from "../images/decorated-wedding-hall-with-candles.jpg";
-import { AspectRatio } from '@chakra-ui/react'
+import GuestInput from "./GuestInput";
 
 
 const text1 = "Book Your Next Event!";
@@ -64,23 +66,22 @@ const LandingSection = () => {
                         </Text>
                     </VStack>
                     <VStack align="start">
-                        <Button 
-                            as="a"
-                            href="#popular-event"
-                            backgroundColor="#6b5b95" color= "#fff" display="flex" alignItems="center"
-                            _hover={{backgroundColor: "#00a896", color: "#fff"}}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                scrollToPopularEvent();  // Call the scrollToPopularEvent  function on click
-                            }}
-                            >
-                                Book Now <FontAwesomeIcon icon={faArrowRight} style={{ marginLeft: "10px" }} />
+                    <Link to="#popular-event" onClick={scrollToPopularEvent}>
+                        <Button
+                            backgroundColor="#6b5b95"
+                            color="#fff"
+                            display="flex"
+                            alignItems="center"
+                            _hover={{ backgroundColor: "#00a896", color: "#fff" }}
+                        >
+                            Book Now <FontAwesomeIcon icon={faArrowRight} style={{ marginLeft: "10px" }} />
                         </Button>
+                    </Link>
 
                     </VStack>
                 </VStack>
 
-                <VStack flex="2" align="end">
+                {/* <VStack flex="2" align="end">
                     <Card maxW="md" borderWidth="1px" borderRadius="lg" boxShadow="md">
                         <CardBody>
                         <VStack spacing={4} align="start">
@@ -105,7 +106,9 @@ const LandingSection = () => {
                         </CardBody>
                         <CardFooter> No event Picked</CardFooter>
                     </Card>
-                    </VStack>
+                    </VStack> */}
+
+                    <GuestInput />
             </Stack>
         </FullScreenSection>
     );

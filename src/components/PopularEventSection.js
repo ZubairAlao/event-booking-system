@@ -2,61 +2,18 @@ import React from "react";
 import FullScreenSection from "./FullScreenSection";
 import { Box, Button, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import Card from "./Card";
+import { useEvent } from "../components/context/EventContext";
 import { Link} from 'react-router-dom';
 
-const events = [
-    {
-        imageSrc: () => require("../images/event1.jpg"),
-        title: "Enchanted Garden Gala",
-        partyNum: 6,
-        amount: "99.99",
-        extras: "Includes catering and entertainment",
-        bookNow: () => "#",
-    },
-    {
-        imageSrc: () => require("../images/event2.jpg"),
-        title: "Sapphire Soiree: A Night of Elegance",
-        partyNum: 8,
-        amount: "149.99",
-        extras: "Includes venue and photography",
-        bookNow: "#",
-    },
-    {
-        imageSrc: () => require("../images/event3.jpg"),
-        title: "Festival of Lights: A Cultural Celebration",
-        partyNum: 10,
-        amount: "199.99",
-        extras: "All-inclusive package",
-        bookNow: "#",
-    },
-    {
-        imageSrc: () => require("../images/event4.jpg"),
-        title: "Summer Sunset Beach Party",
-        partyNum: 6,
-        amount: "99.99",
-        extras: "Includes catering and entertainment",
-        bookNow: "#",
-    },
-    {
-        imageSrc: () => require("../images/event5.jpg"),
-        title: "Tech Innovators Symposium",
-        partyNum: 8,
-        amount: "149.99",
-        extras: "Includes venue and photography",
-        bookNow: "#",
-    },
-    {
-        imageSrc: () => require("../images/event6.jpg"),
-        title: "Masquerade Ball: Unmask the Night",
-        partyNum: 10,
-        amount: "199.99",
-        extras: "All-inclusive package",
-        bookNow: "#",
-    },
-];
-
-
 const PopularEventSection = () => {
+
+    const { events } = useEvent();
+    // Sort the events by amount in descending order
+    const sortedEvents = events.slice().sort((a, b) => b.amount - a.amount);
+
+    // Take the top three highest-paid events
+    const topThreeEvents = sortedEvents.slice(0, 3);
+
     return (
         <FullScreenSection
             justifyContent="center"
@@ -64,6 +21,7 @@ const PopularEventSection = () => {
             backgroundColor="#c7d55e0"
             spacing={8}
             p={8}
+            maxW="1024px"
         >
             <Heading as="h1" id="popular-event" color="#000"
                 position="relative"
@@ -92,10 +50,10 @@ const PopularEventSection = () => {
                 gridGap={8}
                 mt={8}
             >
-                {events.map((event, index) => (
+                {topThreeEvents.map((event, index) => (
                     <Card 
                         key={index}
-                        imageSrc={event.imageSrc()}
+                        imageSrc={event.imageSrc}
                         title={event.title}
                         partyNum={event.partyNum}
                         amount={event.amount}
