@@ -1,19 +1,19 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useEvent } from '../components/context/EventContext';
 import FullScreenSection from '../components/FullScreenSection';
-import Card from '../components/Card';
 import {
   Box,
   Heading,
   Text,
   Button,
-  HStack,
+  Stack,
   VStack,
   Image,
+  Center,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackspace, } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function BookInfo() {
   const { events } = useEvent();
@@ -28,13 +28,12 @@ function BookInfo() {
   return (
     <FullScreenSection
       justifyContent="start"
-      alignItems="center"
+      // alignItems="center"
       backgroundColor="#c7d55e0"
       spacing={8}
       p={8}
       maxW="1024px"
     >
-      <HStack>
       <Heading as="h1" id="search-event" color="#000" position="relative">
         Book Information
         <span
@@ -49,49 +48,61 @@ function BookInfo() {
           }}
         ></span>
       </Heading>
-          
+      <VStack
+        justifyItems="start"
+        mb={6}
+      >
         <Link to="/book-event">
-        <FontAwesomeIcon icon={faBackspace} /> Back to Book Event
+          <FontAwesomeIcon icon={faArrowLeft} mr={4} /> Back to Book Event
         </Link>
-      </HStack>
-      <VStack spacing={4} align="start" mt={4}>
-        <Box w="100%">
+      </VStack>
+
+      <Stack
+        direction={{ base: "column", md: "row" }}
+        justifyContent={{ base: "center", md: "space-between" }}
+      >
+        <Box w={{ base: "100%", md: "45%" }}> 
           <Image src={event.imageSrc} alt={event.title} maxW="100%" />
         </Box>
-        <Heading as="h2" fontSize="2xl" color="#000">
-          {event.title}
-        </Heading>
-        <Text fontSize="lg" color="#333">
-          Date: {event.date}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Venue: {event.venue}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Description: {event.eventDescription}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Duration: {event.eventDuration}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Availability: {event.availability}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Payment Options: {event.paymentOptions.join(', ')}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Price: ${event.amount}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Extra Services: {event.extras}
-        </Text>
-        <Text fontSize="lg" color="#333">
-          Extra Service Price: ${event.extraAmount}
-        </Text>
-        <Button colorScheme="teal" size="lg">
-          Confirm Now
-        </Button>
-      </VStack>
+
+        <VStack spacing={4} alignItems="start" w={{ base: "100%", md: "50%" }}> 
+          <Heading as="h2" fontSize="2xl" color="#000">
+            {event.title}
+          </Heading>
+          <Text fontSize="lg" color="#333">
+            Date: {event.date}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Venue: {event.venue}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Description: {event.eventDescription}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Duration: {event.eventDuration}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Availability: {event.availability}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Payment Options: {event.paymentOptions.join(', ')}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Price: ${event.amount}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Extra Services: {event.extras}
+          </Text>
+          <Text fontSize="lg" color="#333">
+            Extra Service Price: ${event.extraAmount}
+          </Text>          
+        </VStack>
+      </Stack>
+      <Center>
+          <Button colorScheme="teal" size="lg">
+                Confirm Now
+              </Button>
+      </Center>
     </FullScreenSection>
   );
 }
