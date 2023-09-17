@@ -49,7 +49,7 @@ import {
     },
     {
       question: "How can I contact the event organizers for further inquiries?",
-      answer: "You can reach out to our customer support team at [Email Address] or [Phone Number] for any additional questions or concerns."
+      answer: "You can reach out to our customer support team at eventnaija@gmail.com for any additional questions or concerns."
     }
   ];
 

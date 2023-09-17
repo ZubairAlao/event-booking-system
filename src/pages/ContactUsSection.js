@@ -130,6 +130,7 @@ const ContactUsSection = () => {
                                             type="text"
                                             {...formik.getFieldProps("name")} 
                                             borderColor="#9b59b6"
+                                            autoComplete="off"
                                         /> 
                                         <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
                                     </FormControl>
@@ -142,6 +143,7 @@ const ContactUsSection = () => {
                                             type="email" 
                                             {...formik.getFieldProps("email")} 
                                             borderColor="#9b59b6"
+                                            autoComplete="off"
                                         /> 
                                         <FormErrorMessage>{formik.errors.email}</FormErrorMessage> 
                                     </FormControl>
@@ -166,12 +168,12 @@ const ContactUsSection = () => {
                                                 onChange={() => formik.setFieldValue("agreeToTerms", !formik.values.agreeToTerms)}
                                                 colorScheme='green' mr={3}
                                             />
-                                                I agree to EventNaija
-                                                <Link color="blue.500" to="/terms-of-use" target="_blank" rel="noopener noreferrer">
+                                                <Text mx={1}>I agree to EventNaija</Text>
+                                                <Link colorScheme="blue" to="/terms-of-use" target="_blank" rel="noopener noreferrer">
                                                 Terms of Use
                                                 </Link>
-                                                {" "}and{" "}
-                                                <Link color="blue.500" to="/privacy-policy" target="_blank" rel="noopener noreferrer">
+                                                <Text mx={1}>and</Text>
+                                                <Link colorScheme="blue" to="/privacy-policy" target="_blank" rel="noopener noreferrer">
                                                 Privacy Policy
                                                 </Link>
                                         </FormLabel>                                        

@@ -55,7 +55,7 @@ const PopularEventSection = () => {
                         key={index}
                         imageSrc={event.imageSrc}
                         title={event.title}
-                        partyNum={event.partyNum}
+                        guestCount={event.guestCount}
                         amount={event.amount}
                         extras={event.extras}
                         bookNow={event.bookNow}
