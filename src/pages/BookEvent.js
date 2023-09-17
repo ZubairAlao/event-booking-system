@@ -16,7 +16,7 @@ import FullScreenSection from "../components/FullScreenSection";
 import { useEvent } from "../components/context/EventContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+
 
 const BookEventSection = () => {
     const { events } = useEvent();
